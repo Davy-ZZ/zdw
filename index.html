@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <title>zz.nim</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🐳</text></svg>">
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="nimib 0.3.12" name="generator">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.min.css">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/pietroppeter/nimib/assets/atom-one-light.css'>
+    <script src="https://cdn.jsdelivr.net/gh/pietroppeter/nimib@main/assets/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+  <style>
+.nb-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nb-small {
+  font-size: 0.8rem;
+}
+button.nb-small {
+  float: right;
+  padding: 2px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+section#source {
+  display:none
+}
+pre > code {
+  font-size: 1.2em;
+}
+.nb-output {
+  line-height: 1.15;
+}
+figure {
+  margin: 2rem 0;
+}
+figcaption {
+  text-align: center;
+}
+  
+</style>
+  
+</head>
+<body>
+<header>
+<div class="nb-box">
+  <span><a href=".">🏡</a></span>
+  <span><code>zz.nim</code></span>
+  <span></span>
+</div>
+<hr>
+</header><main>
+<h1>RPN计算器使用手册</h1>
+<div style="text-align: center; color: #666; margin-bottom: 2rem;">
+  基于C++实现的逆波兰表示法计算器 - 完整文档
+</div>
+<h2>🚀 快速开始</h2>
+<h3>编译程序</h3>
+<pre><code class="language-bash"></code></pre>
+<h1>使用g++编译</h1>
+<p>g++ -std=c++11 -o rpn_calc rpn_calc.cpp</p>
+
+<h1>或者使用clang++</h1>
+<p>clang++ -std=c++11 -o rpn_calc rpn_calc.cpp</p>
+<pre><code></code></pre>
+<h3>运行程序</h3>
+<pre><code class="language-bash"></code></pre>
+<p>./rpn_calc</p>
+<pre><code></code></pre>
+<h3>程序启动界面</h3>
+<pre><code></code></pre>
+<p>C++ RPN 计算器</p>
+<p>支持的操作: +, -, *, /, ^(幂), sqrt(平方根), fib(斐波那契)</p>
+<p>栈操作: clear(清空), show(显示栈), history(显示历史)</p>
+<p>输入表达式 (例: '5 5 +'), 或 'q' 退出, 'batch' 批量计算模式</p>
+<blockquote>
+</blockquote>
+<pre><code></code></pre>
+<h2>📚 基础使用示例</h2>
+<h3>简单四则运算</h3>
+<pre><code></code></pre>
+<blockquote>
+<p>5 3 +</p>
+</blockquote>
+<p>结果: 8</p>
+
+<blockquote>
+<p>10 4 -</p>
+</blockquote>
+<p>结果: 6</p>
+
+<blockquote>
+<p>2 3 *</p>
+</blockquote>
+<p>结果: 6</p>
+
+<blockquote>
+<p>15 3 /</p>
+</blockquote>
+<p>结果: 5</p>
+<pre><code></code></pre>
+<h3>复杂表达式计算</h3>
+<pre><code></code></pre>
+<blockquote>
+<p>1 2 + 3 + 7 7 * +</p>
+</blockquote>
+<p>结果: 55</p>
+
+<blockquote>
+<p>2 3 * 4 5 * +</p>
+</blockquote>
+<p>结果: 26</p>
+
+<blockquote>
+<p>10 2 / 3 * 4 +</p>
+</blockquote>
+<p>结果: 19</p>
+<pre><code></code></pre>
+<h3>连续运算模式</h3>
+<pre><code></code></pre>
+<blockquote>
+<p>5</p>
+</blockquote>
+<p>结果: 5</p>
+
+<blockquote>
+<p>3</p>
+</blockquote>
+<p>结果: 3</p>
+
+<blockquote>
+<ul>
+<li></li>
+</ul>
+</blockquote>
+<p>结果: 8</p>
+
+<blockquote>
+<p>2</p>
+</blockquote>
+<p>结果: 2</p>
+
+<blockquote>
+<ul>
+<li></li>
+</ul>
+</blockquote>
+<p>结果: 16</p>
+<pre><code></code></pre>
+<h2>🔢 高级数学函数</h2>
+<h3>幂运算</h3>
+<pre><code></code></pre>
+<blockquote>
+<p>2 3 ^</p>
+</blockquote>
+<p>结果: 8</p>
+
+<blockquote>
+<p>5 2 ^</p>
+</blockquote>
+<p>结果: 25</p>
+
+<blockquote>
+<p>4 0.5 ^</p>
+</blockquote>
+<p>结果: 2</p>
+<pre><code></code></pre>
+<h3>平方根运算</h3>
+<pre><code></code></pre>
+<blockquote>
+<p>16 sqrt</p>
+</blockquote>
+<p>结果: 4</p>
+
+<blockquote>
+<p>2 sqrt</p>
+</blockquote>
+<p>结果: 1.41421</p>
+
+<blockquote>
+<p>100 sqrt</p>
+</blockquote>
+<p>结果: 10</p>
+<pre><code></code></pre>
+<h3>斐波那契数列</h3>
+<pre><code></code></pre>
+<blockquote>
+<p>0 fib</p>
+</blockquote>
+<p>结果: 0</p>
+
+<blockquote>
+<p>1 fib</p>
+</blockquote>
+<p>结果: 1</p>
+
+<blockquote>
+<p>5 fib</p>
+</blockquote>
+<p>结果: 5</p>
+
+<blockquote>
+<p>10 fib</p>
+</blockquote>
+<p>结果: 55</p>
+
+<blockquote>
+<p>15 fib</p>
+</blockquote>
+<p>结果: 610</p>
+<pre><code></code></pre>
+<h2>📖 操作符参考手册</h2>
+<h3>基础算术运算符</h3>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">let</span> basicOps = @[
+  (<span class="hljs-string">&quot;+&quot;</span>, <span class="hljs-string">&quot;加法运算&quot;</span>, <span class="hljs-string">&quot;a b +&quot;</span>, <span class="hljs-string">&quot;a + b&quot;</span>),
+  (<span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;减法运算&quot;</span>, <span class="hljs-string">&quot;a b -&quot;</span>, <span class="hljs-string">&quot;a - b&quot;</span>), 
+  (<span class="hljs-string">&quot;*&quot;</span>, <span class="hljs-string">&quot;乘法运算&quot;</span>, <span class="hljs-string">&quot;a b *&quot;</span>, <span class="hljs-string">&quot;a × b&quot;</span>),
+  (<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-string">&quot;除法运算&quot;</span>, <span class="hljs-string">&quot;a b /&quot;</span>, <span class="hljs-string">&quot;a ÷ b&quot;</span>)
+]</code></pre>
+<p>| 操作符 | 功能说明 | RPN表达式 | 数学意义 |</p>
+<p>|--------|----------|-----------|----------|</p>
+<p>| <code>+</code> | 加法运算 | <code>a b +</code> | a + b |</p>
+<p>| <code>-</code> | 减法运算 | <code>a b -</code> | a - b |</p>
+<p>| <code>*</code> | 乘法运算 | <code>a b *</code> | a × b |</p>
+<p>| <code>/</code> | 除法运算 | <code>a b /</code> | a ÷ b |</p>
+<h3>高级数学函数</h3>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">let</span> advancedOps = @[
+  (<span class="hljs-string">&quot;^&quot;</span>, <span class="hljs-string">&quot;幂运算&quot;</span>, <span class="hljs-string">&quot;a b ^&quot;</span>, <span class="hljs-string">&quot;aᵇ&quot;</span>),
+  (<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-string">&quot;平方根&quot;</span>, <span class="hljs-string">&quot;a sqrt&quot;</span>, <span class="hljs-string">&quot;√a&quot;</span>),
+  (<span class="hljs-string">&quot;fib&quot;</span>, <span class="hljs-string">&quot;斐波那契数&quot;</span>, <span class="hljs-string">&quot;n fib&quot;</span>, <span class="hljs-string">&quot;fib(n)&quot;</span>)
+]</code></pre>
+<p>| 操作符 | 功能说明 | RPN表达式 | 数学意义 |</p>
+<p>|--------|----------|-----------|----------|</p>
+<p>| <code>^</code> | 幂运算 | <code>a b ^</code> | aᵇ |</p>
+<p>| <code>sqrt</code> | 平方根 | <code>a sqrt</code> | √a |</p>
+<p>| <code>fib</code> | 斐波那契数 | <code>n fib</code> | fib(n) |</p>
+<h2>⚙️ 系统命令</h2>
+<h3>栈操作命令</h3>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">let</span> stackCommands = @[
+  (<span class="hljs-string">&quot;show&quot;</span>, <span class="hljs-string">&quot;显示当前栈内容&quot;</span>),
+  (<span class="hljs-string">&quot;clear&quot;</span>, <span class="hljs-string">&quot;清空栈&quot;</span>),
+  (<span class="hljs-string">&quot;stack&quot;</span>, <span class="hljs-string">&quot;显示栈状态（同show）&quot;</span>)
+]</code></pre>
+<p>| 命令 | 功能说明 |</p>
+<p>|------|----------|</p>
+<p>| <code>show</code> | 显示当前栈内容 |</p>
+<p>| <code>clear</code> | 清空栈 |</p>
+<p>| <code>stack</code> | 显示栈状态（同show） |</p>
+<h3>历史记录命令</h3>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">let</span> historyCommands = @[
+  (<span class="hljs-string">&quot;history&quot;</span>, <span class="hljs-string">&quot;显示计算历史&quot;</span>),
+  (<span class="hljs-string">&quot;clearhistory&quot;</span>, <span class="hljs-string">&quot;清空历史记录&quot;</span>)
+]</code></pre>
+<p>| 命令 | 功能说明 |</p>
+<p>|------|----------|</p>
+<p>| <code>history</code> | 显示计算历史 |</p>
+<p>| <code>clearhistory</code> | 清空历史记录 |</p>
+<h3>程序控制命令</h3>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">let</span> controlCommands = @[
+  (<span class="hljs-string">&quot;batch&quot;</span>, <span class="hljs-string">&quot;进入批量计算模式&quot;</span>),
+  (<span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-string">&quot;显示帮助信息&quot;</span>), 
+  (<span class="hljs-string">&quot;q&quot;</span>, <span class="hljs-string">&quot;退出程序&quot;</span>),
+  (<span class="hljs-string">&quot;quit&quot;</span>, <span class="hljs-string">&quot;退出程序（同q）&quot;</span>)
+]</code></pre>
+<p>| 命令 | 功能说明 |</p>
+<p>|------|----------|</p>
+<p>| <code>batch</code> | 进入批量计算模式 |</p>
+<p>| <code>help</code> | 显示帮助信息 |</p>
+<p>| <code>q</code> | 退出程序 |</p>
+<p>| <code>quit</code> | 退出程序（同q） |</p>
+<h2>📦 批量计算模式</h2>
+<h3>批量计算示例</h3>
+<pre><code></code></pre>
+<blockquote>
+<p>batch</p>
+</blockquote>
+<p>批量计算模式 (输入空行结束):</p>
+<p>batch&gt; 1 2 + 3 *</p>
+<p>batch&gt; 10 5 / 2 +</p>
+<p>batch&gt; 2 3 ^ 1 -</p>
+<p>batch&gt;</p>
+<p>开始批量计算...</p>
+<p>表达式 1: 1 2 + 3 *</p>
+<p>结果: 9</p>
+<hr />
+<p>表达式 2: 10 5 / 2 +</p>
+<p>结果: 4</p>
+<hr />
+<p>表达式 3: 2 3 ^ 1 -</p>
+<p>结果: 7</p>
+<hr />
+<p>批量计算完成</p>
+<pre><code></code></pre>
+<h2>❌ 错误处理</h2>
+<h3>常见错误示例</h3>
+<pre><code class="nohighlight hljs nim"><span class="hljs-keyword">let</span> errorExamples = @[
+  (<span class="hljs-string">&quot;除零错误&quot;</span>, <span class="hljs-string">&quot;5 0 /&quot;</span>, <span class="hljs-string">&quot;错误: 除零错误&quot;</span>),
+  (<span class="hljs-string">&quot;栈空错误&quot;</span>, <span class="hljs-string">&quot;+&quot;</span>, <span class="hljs-string">&quot;错误: 需要至少2个操作数&quot;</span>),
+  (<span class="hljs-string">&quot;无效输入&quot;</span>, <span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;错误: 未知的操作符或数字: abc&quot;</span>),
+  (<span class="hljs-string">&quot;负数平方根&quot;</span>, <span class="hljs-string">&quot;-4 sqrt&quot;</span>, <span class="hljs-string">&quot;错误: 负数不能开平方根&quot;</span>),
+  (<span class="hljs-string">&quot;无效斐波那契&quot;</span>, <span class="hljs-string">&quot;5.5 fib&quot;</span>, <span class="hljs-string">&quot;错误: 斐波那契数列需要非负整数&quot;</span>)
+]</code></pre>
+<p>| 错误类型 | 输入示例 | 错误信息 |</p>
+<p>|----------|----------|----------|</p>
+<p>| 除零错误 | <code>5 0 /</code> | 错误: 除零错误 |</p>
+<p>| 栈空错误 | <code>+</code> | 错误: 需要至少2个操作数 |</p>
+<p>| 无效输入 | <code>abc</code> | 错误: 未知的操作符或数字: abc |</p>
+<p>| 负数平方根 | <code>-4 sqrt</code> | 错误: 负数不能开平方根 |</p>
+<p>| 无效斐波那契 | <code>5.5 fib</code> | 错误: 斐波那契数列需要非负整数 |</p>
+<h2>💡 使用技巧</h2>
+<h3>有效利用栈</h3>
+<ul>
+<li><strong>连续计算</strong>: 利用栈的持久性进行多步计算</li>
+<li><strong>中间结果</strong>: 复杂的计算可以分解为多个简单步骤</li>
+<li><strong>结果复用</strong>: 之前的结果可以留在栈中供后续使用</li>
+</ul>
+<h3>表达式优化</h3>
+<ul>
+<li><strong>RPN优势</strong>: 无需括号，操作顺序明确</li>
+<li><strong>效率</strong>: 一次扫描即可完成计算</li>
+<li><strong>可读性</strong>: 对于熟悉RPN的用户更加直观</li>
+</ul>
+<h2>🔧 技术规格</h2>
+<h3>系统要求</h3>
+<ul>
+<li><strong>编译器</strong>: 支持C++11标准的编译器 (g++ 4.8+, clang++ 3.3+)</li>
+<li><strong>内存</strong>: 最少 4MB RAM</li>
+<li><strong>操作系统</strong>: Linux, macOS, Windows (使用兼容的编译器)</li>
+</ul>
+<h3>性能特点</h3>
+<ul>
+<li><strong>时间复杂度</strong>: O(n) - 线性时间处理表达式</li>
+<li><strong>空间复杂度</strong>: O(n) - 基于栈深度</li>
+<li><strong>错误恢复</strong>: 完整的异常安全保证</li>
+<li><strong>扩展性</strong>: 模块化设计，易于添加新功能</li>
+</ul>
+<h2>📋 完整会话示例</h2>
+<h3>交互式会话</h3>
+<pre><code></code></pre>
+<p>C++ RPN 计算器</p>
+<p>支持的操作: +, -, *, /, ^(幂), sqrt(平方根), fib(斐波那契)</p>
+<p>栈操作: clear(清空), show(显示栈), history(显示历史)</p>
+<p>输入表达式 (例: '5 5 +'), 或 'q' 退出, 'batch' 批量计算模式</p>
+<blockquote>
+<p>5 3 +</p>
+</blockquote>
+<p>结果: 8</p>
+<blockquote>
+<p>2 *</p>
+</blockquote>
+<p>结果: 16</p>
+<blockquote>
+<p>sqrt</p>
+</blockquote>
+<p>结果: 4</p>
+<blockquote>
+<p>10 fib</p>
+</blockquote>
+<p>结果: 55</p>
+<blockquote>
+<p>show</p>
+</blockquote>
+<p>当前栈: 4 55</p>
+<blockquote>
+<p>history</p>
+</blockquote>
+<p>计算历史:</p>
+<p>5 3 + = 8.000000</p>
+<p>2 * = 16.000000</p>
+<p>sqrt = 4.000000</p>
+<p>10 fib = 55.000000</p>
+<blockquote>
+<p>clear</p>
+</blockquote>
+<p>栈已清空</p>
+<blockquote>
+<p>q</p>
+</blockquote>
+<p>感谢使用RPN计算器！</p>
+<pre><code></code></pre>
+<h2>🎯 总结</h2>
+<p>本RPN计算器提供了完整的逆波兰表示法计算功能，具有以下特点：</p>
+<ul>
+<li>✅ <strong>完整的四则运算</strong>支持</li>
+<li>✅ <strong>高级数学函数</strong>包括幂运算、平方根、斐波那契数列</li>
+<li>✅ <strong>健壮的错误处理</strong>和用户友好的错误提示</li>
+<li>✅ <strong>批量计算模式</strong>支持连续计算多个表达式</li>
+<li>✅ <strong>计算历史记录</strong>便于查看和回溯</li>
+<li>✅ <strong>清晰的栈管理</strong>操作简单直观</li>
+</ul>
+<hr />
+<div style="text-align: center; color: #999; margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem;">
+  文档版本: 1.0 | 最后更新: 2025年10月 | 生成工具: Nimib
+</div>
+</main>
+<footer>
+<div class="nb-box">
+  <span><span class="nb-small">made with <a href="https://pietroppeter.github.io/nimib/">nimib 🐳</a></span></span>
+  <span></span>
+  <span><button class="nb-small" id="show" onclick="toggleSourceDisplay()">Show Source</button></span>
+</div>
+</footer>
+<section id="source">
+<pre><code class="nohighlight nim hljs"><span class="hljs-keyword">import</span> nimib
+
+nbInit
+
+nbText: <span class="hljs-string">&quot;&quot;&quot;
+# RPN计算器使用手册
+
+&lt;div style=&quot;text-align: center; color: #666; margin-bottom: 2rem;&quot;&gt;
+  基于C++实现的逆波兰表示法计算器 - 完整文档
+&lt;/div&gt;
+&quot;&quot;&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 🚀 快速开始&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 编译程序&quot;</span>
+nbText: <span class="hljs-string">&quot;```bash&quot;</span>
+nbText: <span class="hljs-string">&quot;# 使用g++编译&quot;</span>
+nbText: <span class="hljs-string">&quot;g++ -std=c++11 -o rpn_calc rpn_calc.cpp&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;# 或者使用clang++&quot;</span> 
+nbText: <span class="hljs-string">&quot;clang++ -std=c++11 -o rpn_calc rpn_calc.cpp&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 运行程序&quot;</span>
+nbText: <span class="hljs-string">&quot;```bash&quot;</span>
+nbText: <span class="hljs-string">&quot;./rpn_calc&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 程序启动界面&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;C++ RPN 计算器&quot;</span>
+nbText: <span class="hljs-string">&quot;支持的操作: +, -, *, /, ^(幂), sqrt(平方根), fib(斐波那契)&quot;</span>
+nbText: <span class="hljs-string">&quot;栈操作: clear(清空), show(显示栈), history(显示历史)&quot;</span>
+nbText: <span class="hljs-string">&quot;输入表达式 (例: '5 5 +'), 或 'q' 退出, 'batch' 批量计算模式&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt;&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 📚 基础使用示例&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 简单四则运算&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 5 3 +&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 8&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 10 4 -&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 6&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 2 3 *&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 6&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 15 3 /&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 5&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 复杂表达式计算&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 1 2 + 3 + 7 7 * +&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 55&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 2 3 * 4 5 * +&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 26&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 10 2 / 3 * 4 +&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 19&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 连续运算模式&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 5&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 5&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 3&quot;</span> 
+nbText: <span class="hljs-string">&quot;结果: 3&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; +&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 8&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 2&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 2&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; *&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 16&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 🔢 高级数学函数&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 幂运算&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 2 3 ^&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 8&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 5 2 ^&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 25&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 4 0.5 ^&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 2&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 平方根运算&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 16 sqrt&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 4&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 2 sqrt&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 1.41421&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 100 sqrt&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 10&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 斐波那契数列&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 0 fib&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 0&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 1 fib&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 1&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 5 fib&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 5&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 10 fib&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 55&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 15 fib&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 610&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 📖 操作符参考手册&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 基础算术运算符&quot;</span>
+nbCode:
+  <span class="hljs-keyword">let</span> basicOps = @[
+    (<span class="hljs-string">&quot;+&quot;</span>, <span class="hljs-string">&quot;加法运算&quot;</span>, <span class="hljs-string">&quot;a b +&quot;</span>, <span class="hljs-string">&quot;a + b&quot;</span>),
+    (<span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-string">&quot;减法运算&quot;</span>, <span class="hljs-string">&quot;a b -&quot;</span>, <span class="hljs-string">&quot;a - b&quot;</span>), 
+    (<span class="hljs-string">&quot;*&quot;</span>, <span class="hljs-string">&quot;乘法运算&quot;</span>, <span class="hljs-string">&quot;a b *&quot;</span>, <span class="hljs-string">&quot;a × b&quot;</span>),
+    (<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-string">&quot;除法运算&quot;</span>, <span class="hljs-string">&quot;a b /&quot;</span>, <span class="hljs-string">&quot;a ÷ b&quot;</span>)
+  ]
+
+nbText: <span class="hljs-string">&quot;| 操作符 | 功能说明 | RPN表达式 | 数学意义 |&quot;</span>
+nbText: <span class="hljs-string">&quot;|--------|----------|-----------|----------|&quot;</span>
+<span class="hljs-keyword">for</span> (op, desc, <span class="hljs-built_in">expr</span>, math) <span class="hljs-keyword">in</span> basicOps:
+  nbText: <span class="hljs-string">&quot;| `&quot;</span> &amp; op &amp; <span class="hljs-string">&quot;` | &quot;</span> &amp; desc &amp; <span class="hljs-string">&quot; | `&quot;</span> &amp; <span class="hljs-built_in">expr</span> &amp; <span class="hljs-string">&quot;` | &quot;</span> &amp; math &amp; <span class="hljs-string">&quot; |&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 高级数学函数&quot;</span>
+nbCode:
+  <span class="hljs-keyword">let</span> advancedOps = @[
+    (<span class="hljs-string">&quot;^&quot;</span>, <span class="hljs-string">&quot;幂运算&quot;</span>, <span class="hljs-string">&quot;a b ^&quot;</span>, <span class="hljs-string">&quot;aᵇ&quot;</span>),
+    (<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-string">&quot;平方根&quot;</span>, <span class="hljs-string">&quot;a sqrt&quot;</span>, <span class="hljs-string">&quot;√a&quot;</span>),
+    (<span class="hljs-string">&quot;fib&quot;</span>, <span class="hljs-string">&quot;斐波那契数&quot;</span>, <span class="hljs-string">&quot;n fib&quot;</span>, <span class="hljs-string">&quot;fib(n)&quot;</span>)
+  ]
+
+nbText: <span class="hljs-string">&quot;| 操作符 | 功能说明 | RPN表达式 | 数学意义 |&quot;</span>
+nbText: <span class="hljs-string">&quot;|--------|----------|-----------|----------|&quot;</span>
+<span class="hljs-keyword">for</span> (op, desc, <span class="hljs-built_in">expr</span>, math) <span class="hljs-keyword">in</span> advancedOps:
+  nbText: <span class="hljs-string">&quot;| `&quot;</span> &amp; op &amp; <span class="hljs-string">&quot;` | &quot;</span> &amp; desc &amp; <span class="hljs-string">&quot; | `&quot;</span> &amp; <span class="hljs-built_in">expr</span> &amp; <span class="hljs-string">&quot;` | &quot;</span> &amp; math &amp; <span class="hljs-string">&quot; |&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## ⚙️ 系统命令&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 栈操作命令&quot;</span>
+nbCode:
+  <span class="hljs-keyword">let</span> stackCommands = @[
+    (<span class="hljs-string">&quot;show&quot;</span>, <span class="hljs-string">&quot;显示当前栈内容&quot;</span>),
+    (<span class="hljs-string">&quot;clear&quot;</span>, <span class="hljs-string">&quot;清空栈&quot;</span>),
+    (<span class="hljs-string">&quot;stack&quot;</span>, <span class="hljs-string">&quot;显示栈状态（同show）&quot;</span>)
+  ]
+
+nbText: <span class="hljs-string">&quot;| 命令 | 功能说明 |&quot;</span>
+nbText: <span class="hljs-string">&quot;|------|----------|&quot;</span>
+<span class="hljs-keyword">for</span> (cmd, desc) <span class="hljs-keyword">in</span> stackCommands:
+  nbText: <span class="hljs-string">&quot;| `&quot;</span> &amp; cmd &amp; <span class="hljs-string">&quot;` | &quot;</span> &amp; desc &amp; <span class="hljs-string">&quot; |&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 历史记录命令&quot;</span>
+nbCode:
+  <span class="hljs-keyword">let</span> historyCommands = @[
+    (<span class="hljs-string">&quot;history&quot;</span>, <span class="hljs-string">&quot;显示计算历史&quot;</span>),
+    (<span class="hljs-string">&quot;clearhistory&quot;</span>, <span class="hljs-string">&quot;清空历史记录&quot;</span>)
+  ]
+
+nbText: <span class="hljs-string">&quot;| 命令 | 功能说明 |&quot;</span>
+nbText: <span class="hljs-string">&quot;|------|----------|&quot;</span>
+<span class="hljs-keyword">for</span> (cmd, desc) <span class="hljs-keyword">in</span> historyCommands:
+  nbText: <span class="hljs-string">&quot;| `&quot;</span> &amp; cmd &amp; <span class="hljs-string">&quot;` | &quot;</span> &amp; desc &amp; <span class="hljs-string">&quot; |&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 程序控制命令&quot;</span>
+nbCode:
+  <span class="hljs-keyword">let</span> controlCommands = @[
+    (<span class="hljs-string">&quot;batch&quot;</span>, <span class="hljs-string">&quot;进入批量计算模式&quot;</span>),
+    (<span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-string">&quot;显示帮助信息&quot;</span>), 
+    (<span class="hljs-string">&quot;q&quot;</span>, <span class="hljs-string">&quot;退出程序&quot;</span>),
+    (<span class="hljs-string">&quot;quit&quot;</span>, <span class="hljs-string">&quot;退出程序（同q）&quot;</span>)
+  ]
+
+nbText: <span class="hljs-string">&quot;| 命令 | 功能说明 |&quot;</span>
+nbText: <span class="hljs-string">&quot;|------|----------|&quot;</span>
+<span class="hljs-keyword">for</span> (cmd, desc) <span class="hljs-keyword">in</span> controlCommands:
+  nbText: <span class="hljs-string">&quot;| `&quot;</span> &amp; cmd &amp; <span class="hljs-string">&quot;` | &quot;</span> &amp; desc &amp; <span class="hljs-string">&quot; |&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 📦 批量计算模式&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 批量计算示例&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; batch&quot;</span>
+nbText: <span class="hljs-string">&quot;批量计算模式 (输入空行结束):&quot;</span>
+nbText: <span class="hljs-string">&quot;batch&gt; 1 2 + 3 *&quot;</span>
+nbText: <span class="hljs-string">&quot;batch&gt; 10 5 / 2 +&quot;</span> 
+nbText: <span class="hljs-string">&quot;batch&gt; 2 3 ^ 1 -&quot;</span>
+nbText: <span class="hljs-string">&quot;batch&gt;&quot;</span>
+nbText: <span class="hljs-string">&quot;开始批量计算...&quot;</span>
+nbText: <span class="hljs-string">&quot;表达式 1: 1 2 + 3 *&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 9&quot;</span>
+nbText: <span class="hljs-string">&quot;---&quot;</span>
+nbText: <span class="hljs-string">&quot;表达式 2: 10 5 / 2 +&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 4&quot;</span>
+nbText: <span class="hljs-string">&quot;---&quot;</span>
+nbText: <span class="hljs-string">&quot;表达式 3: 2 3 ^ 1 -&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 7&quot;</span>
+nbText: <span class="hljs-string">&quot;---&quot;</span>
+nbText: <span class="hljs-string">&quot;批量计算完成&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## ❌ 错误处理&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 常见错误示例&quot;</span>
+nbCode:
+  <span class="hljs-keyword">let</span> errorExamples = @[
+    (<span class="hljs-string">&quot;除零错误&quot;</span>, <span class="hljs-string">&quot;5 0 /&quot;</span>, <span class="hljs-string">&quot;错误: 除零错误&quot;</span>),
+    (<span class="hljs-string">&quot;栈空错误&quot;</span>, <span class="hljs-string">&quot;+&quot;</span>, <span class="hljs-string">&quot;错误: 需要至少2个操作数&quot;</span>),
+    (<span class="hljs-string">&quot;无效输入&quot;</span>, <span class="hljs-string">&quot;abc&quot;</span>, <span class="hljs-string">&quot;错误: 未知的操作符或数字: abc&quot;</span>),
+    (<span class="hljs-string">&quot;负数平方根&quot;</span>, <span class="hljs-string">&quot;-4 sqrt&quot;</span>, <span class="hljs-string">&quot;错误: 负数不能开平方根&quot;</span>),
+    (<span class="hljs-string">&quot;无效斐波那契&quot;</span>, <span class="hljs-string">&quot;5.5 fib&quot;</span>, <span class="hljs-string">&quot;错误: 斐波那契数列需要非负整数&quot;</span>)
+  ]
+
+nbText: <span class="hljs-string">&quot;| 错误类型 | 输入示例 | 错误信息 |&quot;</span>
+nbText: <span class="hljs-string">&quot;|----------|----------|----------|&quot;</span>
+<span class="hljs-keyword">for</span> (errType, input, msg) <span class="hljs-keyword">in</span> errorExamples:
+  nbText: <span class="hljs-string">&quot;| &quot;</span> &amp; errType &amp; <span class="hljs-string">&quot; | `&quot;</span> &amp; input &amp; <span class="hljs-string">&quot;` | &quot;</span> &amp; msg &amp; <span class="hljs-string">&quot; |&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 💡 使用技巧&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 有效利用栈&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;&quot;
+- **连续计算**: 利用栈的持久性进行多步计算
+- **中间结果**: 复杂的计算可以分解为多个简单步骤
+- **结果复用**: 之前的结果可以留在栈中供后续使用
+&quot;&quot;&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 表达式优化&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;&quot;
+- **RPN优势**: 无需括号，操作顺序明确
+- **效率**: 一次扫描即可完成计算
+- **可读性**: 对于熟悉RPN的用户更加直观
+&quot;&quot;&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 🔧 技术规格&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 系统要求&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;&quot;
+- **编译器**: 支持C++11标准的编译器 (g++ 4.8+, clang++ 3.3+)
+- **内存**: 最少 4MB RAM
+- **操作系统**: Linux, macOS, Windows (使用兼容的编译器)
+&quot;&quot;&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 性能特点&quot;</span>
+nbText: <span class="hljs-string">&quot;&quot;&quot;
+- **时间复杂度**: O(n) - 线性时间处理表达式
+- **空间复杂度**: O(n) - 基于栈深度
+- **错误恢复**: 完整的异常安全保证
+- **扩展性**: 模块化设计，易于添加新功能
+&quot;&quot;&quot;</span>
+
+nbText: <span class="hljs-string">&quot;## 📋 完整会话示例&quot;</span>
+
+nbText: <span class="hljs-string">&quot;### 交互式会话&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+nbText: <span class="hljs-string">&quot;C++ RPN 计算器&quot;</span>
+nbText: <span class="hljs-string">&quot;支持的操作: +, -, *, /, ^(幂), sqrt(平方根), fib(斐波那契)&quot;</span>
+nbText: <span class="hljs-string">&quot;栈操作: clear(清空), show(显示栈), history(显示历史)&quot;</span>
+nbText: <span class="hljs-string">&quot;输入表达式 (例: '5 5 +'), 或 'q' 退出, 'batch' 批量计算模式&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 5 3 +&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 8&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 2 *&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 16&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; sqrt&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 4&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; 10 fib&quot;</span>
+nbText: <span class="hljs-string">&quot;结果: 55&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; show&quot;</span>
+nbText: <span class="hljs-string">&quot;当前栈: 4 55&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; history&quot;</span>
+nbText: <span class="hljs-string">&quot;计算历史:&quot;</span>
+nbText: <span class="hljs-string">&quot;  5 3 + = 8.000000&quot;</span>
+nbText: <span class="hljs-string">&quot;  2 * = 16.000000&quot;</span>
+nbText: <span class="hljs-string">&quot;  sqrt = 4.000000&quot;</span>
+nbText: <span class="hljs-string">&quot;  10 fib = 55.000000&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; clear&quot;</span>
+nbText: <span class="hljs-string">&quot;栈已清空&quot;</span>
+nbText: <span class="hljs-string">&quot;&gt; q&quot;</span>
+nbText: <span class="hljs-string">&quot;感谢使用RPN计算器！&quot;</span>
+nbText: <span class="hljs-string">&quot;```&quot;</span>
+
+nbText: <span class="hljs-string">&quot;&quot;&quot;
+## 🎯 总结
+
+本RPN计算器提供了完整的逆波兰表示法计算功能，具有以下特点：
+
+- ✅ **完整的四则运算**支持
+- ✅ **高级数学函数**包括幂运算、平方根、斐波那契数列
+- ✅ **健壮的错误处理**和用户友好的错误提示
+- ✅ **批量计算模式**支持连续计算多个表达式
+- ✅ **计算历史记录**便于查看和回溯
+- ✅ **清晰的栈管理**操作简单直观
+
+---
+
+&lt;div style=&quot;text-align: center; color: #999; margin-top: 3rem; border-top: 1px solid #eee; padding-top: 1rem;&quot;&gt;
+  文档版本: 1.0 | 最后更新: 2025年10月 | 生成工具: Nimib
+&lt;/div&gt;
+&quot;&quot;&quot;</span>
+
+nbSave
+</code></pre>
+</section><script>
+function toggleSourceDisplay() {
+  var btn = document.getElementById("show")
+  var source = document.getElementById("source");
+  if (btn.innerHTML=="Show Source") {
+    btn.innerHTML = "Hide Source";
+    source.style.display = "block";
+  } else {
+    btn.innerHTML = "Show Source";
+    source.style.display = "none";
+  }
+}
+</script></body>
+</html>
